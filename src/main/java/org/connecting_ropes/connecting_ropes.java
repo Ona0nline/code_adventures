@@ -20,6 +20,7 @@ public class connecting_ropes {
 
     public static void main(String[] args) {
 //        How about I try all combinations and then find the min value of that?
+        System.out.println(trio_array(new ArrayList<>(List.of(4,3,2,6))));
     }
 
 //    expects [6,9], adds the result of the sum of the array plus it's occupants altogetger into one array, then I find the miniumn
@@ -29,17 +30,26 @@ public class connecting_ropes {
 
 //    Expects [4,3,2,6], returns [a,b,c], eg. [6,3,6]
 
-    public List<Integer> trio_array(ArrayList<Integer> rope_lengths){
-        //        [4,3,2,6]
-//        Connect them using FOIL method? There will be four iterations whereby everyone
-//        gets a turn to be the first connection
-//        For [a,b,c], will get a turn to be outer matched and inner matched
+    public static List<List<Integer>> trio_array(ArrayList<Integer> rope_lengths){
 
-        return new ArrayList<>();
+        List<List<Integer>> trios = new ArrayList<>();
+
+        int first_sum = rope_lengths.getFirst() + rope_lengths.get(2);
+        int outer_sum = rope_lengths.getFirst() + rope_lengths.getLast();
+        int inner_sum = rope_lengths.get(1) + rope_lengths.get(2);
+        int last_sum = rope_lengths.get(1) + rope_lengths.getLast();
+
+        trios.add(new ArrayList<>(List.of(first_sum,rope_lengths.get(1), rope_lengths.getLast())));
+        trios.add(new ArrayList<>(List.of(outer_sum,rope_lengths.get(1), rope_lengths.get(2))));
+        trios.add(new ArrayList<>(List.of(inner_sum,rope_lengths.getFirst(), rope_lengths.getLast())));
+        trios.add(new ArrayList<>(List.of(last_sum,rope_lengths.getFirst(), rope_lengths.get(2))));
+
+        return trios;
     }
 
 //    Expects [6,3,6] returns [6,9]
     public List<Integer> duo_array(ArrayList<Integer> rope_lengths){
         return new ArrayList<>();
     }
+
 }
