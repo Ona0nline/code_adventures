@@ -21,10 +21,14 @@ public class connecting_ropes {
     public static void main(String[] args) {
 //        How about I try all combinations and then find the min value of that?
         System.out.println(trio_array(new ArrayList<>(List.of(4,3,2,6))));
+        List<List<Integer>> trios = trio_array(new ArrayList<>(List.of(4,3,2,6)));
+        System.out.println(duo_array(trios));
     }
 
 //    expects [6,9], adds the result of the sum of the array plus it's occupants altogetger into one array, then I find the miniumn
-    public int cost_cal(ArrayList<Integer> rope_lengths){
+    public int cost_cal(List<List<Integer>> duos){
+        List<Integer> totals = new ArrayList<>();
+
         return 0;
     }
 
@@ -48,8 +52,21 @@ public class connecting_ropes {
     }
 
 //    Expects [6,3,6] returns [6,9]
-    public List<Integer> duo_array(ArrayList<Integer> rope_lengths){
-        return new ArrayList<>();
+    public static List<List<Integer>> duo_array(List<List<Integer>> trios){
+
+        List<List<Integer>> duos = new ArrayList<>();
+
+        for(List<Integer> candidate : trios){
+            int first_pair = candidate.getFirst() + candidate.get(1);
+            int last_pair = candidate.get(1) + candidate.getFirst();
+            int outer_pair = candidate.getFirst() + candidate.getLast();
+
+            duos.add(new ArrayList<>(List.of(first_pair , candidate.getLast())));
+            duos.add(new ArrayList<>(List.of(last_pair , candidate.getFirst())));
+            duos.add(new ArrayList<>(List.of(outer_pair , candidate.get(1))));
+
+        }
+        return duos;
     }
 
 }
